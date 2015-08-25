@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="js/jquery-1.9.0.min.js"></script>
+		<script src="js/crafty.js"></script>
+		<script src="js/craftygame.js"></script>
+		<script>
+			window.addEventListener('load', Game.start);
+		</script>
+	</head>
+	<body>
+		<!-- <img src="./wall-old.png" style="width:100%;" /> -->
+		<div id="menu">
+			<h1>Pokemon Drinking Game!</h1>
+			<h2 id="maxPlayers"></h2>
+			Players: <select id = "playerNum" name="Players" onchange="generateMenu(this.value);">
+			</select>
+			<br><br>
+	        <form id="form" action="game.php">
+	            <table id="formTable">
+	            <tr><th>Player Name:</th><th>Starter:</th></tr>
+	            </table>
+	            <input id="addPlayer" type="button" onchange="addPlayer()">
+	            <input id="playButton" type="submit" value="Play">
+	            <p>Refresh the page to start a new game.</p>
+	        </form>
+		</div>
+
+		<!-- OPTIONS NEED TO BE MOVED TO A SEPARATE PAGE EVENTUALLY -->
+		<h2>Options</h2>
+		<div id="options">
+			<form id="gameOptions" action="pewpew.html" >
+				<label for="maxPlayersOption">Max Players:</label>
+				<input type="text" id="maxPlayersOption"></input>
+				<input type="submit" value="Update">
+			</form>
+		</div>
+
+		<div id="game">
+			<!-- GAME BOARD IS HERE -->
+		</div>
+
+		<script type="text/javascript">
+			$("#gameOptions").submit(function(event) {
+				event.preventDefault();
+				var maxPlayers = $("#maxPlayersOption").val();
+				updateOptions(maxPlayers);
+				//TODO other options
+				return false;
+			});
+		</script>
+	</body>
+</html>

@@ -18,6 +18,14 @@
 		</script>
 	</head>
 	<body>
+		<div id="diceBlock">
+			<!-- DICE NUMBER DISPLAY -->
+		</div>
+		<div id="playerSpace">
+			<!-- PLAYER SPACE DISPLAY -->
+		</div>
+
+		<!-- This menu will eventually need to be the game lobby -->
 		<div id="menu">
 			<h1>Pokemon Drinking Game!</h1>
 			<h2 id='maxPlayers'></h2>
@@ -90,8 +98,10 @@
 					}
 					players[i]= {
 						"name" : playerName,
-						"starter" : playerStarter
+						"starter" : playerStarter,
+						"space" : 0
 					}
+					// space = 0 starts them at the pallet town square
 				}
 				Game.initPlayers(playerNum, players);
 				return false;

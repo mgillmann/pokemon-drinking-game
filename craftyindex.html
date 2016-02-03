@@ -32,7 +32,7 @@
 			<h1>Pokemon Drinking Game!</h1>
 			<h2 id='maxPlayers'></h2>
 	        <form id='playForm' action='initplayers'>
-	        	<label for='playerNum'>Players</label> 
+	        	<label for='playerNum'>Players</label>
 	        	<select id = 'playerNum' name='Players' onchange='generateMenu(this.value);'>
 	        		<option selected='selected' value='0'>Select</option>
 	        	</select>
@@ -101,7 +101,8 @@
 						"name" : playerName,
 						"starter" : playerStarter,
 						"space" : 0,
-						"effect" : "none"
+						"effect" : "none",
+						"destinationSpace" : 0
 						// The effect will be used to determine if a player needs to move faster or slower.  Or not move at all
 					}
 					// space = 0 starts them at the pallet town square

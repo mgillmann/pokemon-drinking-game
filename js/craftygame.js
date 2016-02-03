@@ -73,8 +73,9 @@ Game = {
 	initPlayers: function(numPlayers, players) {
 		//TODO figure out how to resize image and zoom in on players
 		Crafty.scene("game", function() {
-			Crafty.background("url('./wall-old.png')");
+			//Crafty.background("url('./wall-old.png')");
 			$("#menu").hide();
+			Crafty.e("2D, Canvas, Image").image("./wall-old.png");
 			currentNumPlayers = numPlayers;
 			for(i = 0;i < numPlayers;i++) {
 				// Create players, move to Pallet Town
@@ -88,13 +89,18 @@ Game = {
 				// Idk what circle does
 				//Crafty.circle(0,0,10);
 			}
+
 		});
+
 		Game.playGame();
 		// Play the game after the players are created
 	},
 
 	playGame: function() {
 		Crafty.enterScene("game");
+		Crafty.viewport.clampToEntities = false;
+		Crafty.viewport.follow(playersArray[currentPlayer],-800,-500);
+		//Crafty.viewport.centerOn(playersArray[0], 3000);
 		//  On key press roll the dice
 		// Temporary code, testing stuff.
 		// On site press "R", look at top left of screen

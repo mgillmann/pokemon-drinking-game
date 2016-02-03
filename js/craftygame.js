@@ -99,7 +99,7 @@ Game = {
 	playGame: function() {
 		Crafty.enterScene("game");
 		Crafty.viewport.clampToEntities = false;
-		Crafty.viewport.follow(playersArray[currentPlayer],-800,-500);
+		Crafty.viewport.follow(playersArray[currentPlayer],-800,-800);
 		//Crafty.viewport.centerOn(playersArray[0], 3000);
 		//  On key press roll the dice
 		// Temporary code, testing stuff.

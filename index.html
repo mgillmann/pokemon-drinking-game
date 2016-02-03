@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/menu.css">
+		<link rel="stylesheet" type="text/css" href="css/options.css">
+		<link rel="stylesheet" type="text/css" href="css/game.css">
+		<script src="js/jquery-1.9.0.min.js"></script>
+		<script src="js/spaces.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/crafty.js"></script>
+		<script src="js/craftygame.js"></script>
+		<script>
+			window.addEventListener('load', Game.start);
+			$(document).ready(function(){
+				$("#menu").hide();
+				$("#options").hide();
+			});
+		</script>
+		<title>Pokemon Drinking Game</title>
+	</head>
+	<body>
+		<div id="diceBlock">
+			<!-- DICE NUMBER DISPLAY -->
+		</div>
+		<div id="playerSpace">
+			<!-- PLAYER SPACE DISPLAY -->
+		</div>
+
+		<!-- This menu will eventually need to be the game lobby -->
+		<div id="menu">
+			<h1>Pokemon Drinking Game!</h1>
+			<h2 id='maxPlayers'></h2>
+	        <form id='playForm' action='initplayers'>
+	        	<label for='playerNum'>Players</label>
+	        	<select id = 'playerNum' name='Players' onchange='generateMenu(this.value);'>
+	        		<option selected='selected' value='0'>Select</option>
+	        	</select>
+	        	<br><br>
+	            <table id='formTable'>
+	            	<tr><th>Player Name:</th><th>Starter:</th></tr>
+	            </table>
+	            <input id='playButton' type='submit' value='Play'>
+				<button id='optionsButton' value='Options'>Options</button>
+	            <p>Refresh the page to start a new game.</p>
+	        </form>
+		</div>
+
+		<!-- OPTIONS NEED TO BE MOVED TO A SEPARATE PAGE EVENTUALLY -->
+		<div id="options">
+		<h2>Options</h2>
+			<form id="gameOptions" action="showoptions" >
+				<label for="maxPlayersOption">Max Players:</label>
+				<input type="text" id="maxPlayersOption"></input>
+				<input type="submit" value="Update">
+			</form>
+			<button id="optionsClose">Close</button>
+		</div>
+
+		<div id="game">
+			<!-- GAME BOARD IS HERE -->
+		</div>
+
+		<script type="text/javascript">
+			// utilities for the page
+
+			$("#optionsButton").click(function(e) {
+				e.preventDefault();
+				$("#options").toggle();
+			});
+
+			$("#optionsClose").click(function(e) {
+				e.preventDefault();
+				$("#options").hide();
+			});
+
+			$("#gameOptions").submit(function(event) {
+				event.preventDefault();
+				var maxPlayers = $("#maxPlayersOption").val();
+				updateOptions(maxPlayers);
+				//TODO other options
+				return false;
+			});
+
+			$("#playForm").submit(function(e) {
+				e.preventDefault();
+				var playerNum = $("#playerNum").val();
+				var players = []
+				for (var i = 0;i < playerNum;i++) {
+					var playerName = $("#player_"+i).val();
+					var playerStarter = $("#starter_"+i).val()
+					if(!playerName) {
+						alert("Enter all names");
+						return false;
+					}
+					if(!playerStarter) {
+						alert("Select your starters");
+						return false;
+					}
+					players[i]= {
+						"name" : playerName,
+						"starter" : playerStarter,
+						"space" : 0,
+						"effect" : "none",
+						"destinationSpace" : 0
+						// The effect will be used to determine if a player needs to move faster or slower.  Or not move at all
+					}
+					// space = 0 starts them at the pallet town square
+				}
+				Game.initPlayers(playerNum, players);
+				return false;
+			});
+		</script>
+	</body>
+</html>

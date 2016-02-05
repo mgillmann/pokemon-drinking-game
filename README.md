@@ -18,7 +18,7 @@ Bower is used to manage client-side dependencies.  Obtain bower via:
 - npm install -g bower
 
 Install dependencies via:
-- bower init
+- bower install
 
 ##How to play:
 

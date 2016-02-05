@@ -13,6 +13,13 @@ This Pokemon Drinking Game is built using [jQuery](http://jquery.com), javascrip
 - Changes a player's token to yellow when landing on tile 4 (You caught a Pikachu!).
 - up to 9 players
 
+##Setup
+Bower is used to manage client-side dependencies.  Obtain bower via:
+npm install -g bower
+
+Install dependencies via:
+bower init
+
 ##How to play:
 
 1. Open `index.html` in a modern browser that supports CSS3 transforms and transitions.

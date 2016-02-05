@@ -15,10 +15,10 @@ This Pokemon Drinking Game is built using [jQuery](http://jquery.com), javascrip
 
 ##Setup
 Bower is used to manage client-side dependencies.  Obtain bower via:
-npm install -g bower
+-npm install -g bower
 
 Install dependencies via:
-bower init
+-bower init
 
 ##How to play:
 

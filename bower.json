@@ -1,0 +1,21 @@
+{
+  "name": "pokemon-drinking-game",
+  "homepage": "https://github.com/mzeman/pokemon-drinking-game",
+  "description": "",
+  "main": "src/index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src/components"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "crafty": "^0.7.0"
+  }
+}

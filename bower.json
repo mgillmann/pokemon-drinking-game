@@ -12,7 +12,7 @@
     "bower_components",
     "test",
     "tests",
-    "src/components"
+    "src/public/components"
   ],
   "dependencies": {
     "bootstrap": "^3.3.6",

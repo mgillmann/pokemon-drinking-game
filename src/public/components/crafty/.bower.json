@@ -1,0 +1,26 @@
+{
+  "name": "crafty",
+  "main": "dist/crafty.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "build",
+    "playgrounds",
+    "test",
+    "*.md",
+    "changelog.txt",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "homepage": "https://github.com/craftyjs/Crafty",
+  "version": "0.7.0",
+  "_release": "0.7.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.7.0",
+    "commit": "5c34e4039278e39defc230858d1e83c078935f50"
+  },
+  "_source": "git://github.com/craftyjs/Crafty.git",
+  "_target": "^0.7.0",
+  "_originalSource": "crafty"
+}

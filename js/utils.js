@@ -29,7 +29,7 @@ function updateOptions(maxPlayers) {
 	Crafty.enterScene("menu");
 }
 
-function rollDice(player) 
+function rollDice(player)
 {	// Do we need player params or what space the player is on?
 	// Also in special cases where players move half spaces/double spaces we need to do something else
 	diceVal = Crafty.math.randomInt(1,6);
@@ -60,12 +60,12 @@ function moveSpaces(numberOfSpaces, player) {
 
 	newSpace = handleSpecialTiles(oldSpace, newSpace, player)
 
-
-	// Add movement animation?
 	// Update the player space
 	player.space = newSpace;
 	moveTo = spaces[newSpace];
-	player.attr({x:moveTo.x, y:moveTo.y});
+
+//leverage tween for movement
+	player.tween({x: moveTo.x, y: moveTo.y}, 1000);
 }
 
 
@@ -79,7 +79,7 @@ function nextPlayer(player) {
 		return;
 	}
 
-	// since the current player starts at 0, we want to subtract 1 
+	// since the current player starts at 0, we want to subtract 1
 	// so the current number reflects actual current player values
 	actualCurrentPlayers = currentNumPlayers-1;
 	if (currentPlayer >= actualCurrentPlayers) {
@@ -127,8 +127,8 @@ function handleSpecialTiles(oldSpace, newSpace, player) {
 	}
 
 	if(newSpace == 4) {
-		// TODO 
-		// update the player sprite 
+		// TODO
+		// update the player sprite
 		// we shouldn't have to create a new entity here?
 		player.sprite("pikachu");
 		player.starter = "pikachu";
@@ -137,5 +137,3 @@ function handleSpecialTiles(oldSpace, newSpace, player) {
 	// TODO add more special tiles
 	return newSpace;
 }
-
-

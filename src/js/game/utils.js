@@ -65,19 +65,24 @@ function moveSpaces(numberOfSpaces, player) {
 	moveTo = spaces[newSpace];
 
 //leverage tween for movement
-	player.tween({x: moveTo.x, y: moveTo.y}, 1000);
+	player.tween({x: moveTo.x, y: moveTo.y}, 1000).bind("TweenEnd",function(eventAction){
+		//Example of TweenEnd Event
+		//nextPlayer(player);
+	});
 }
 
 
 // This is the last thing that will happen at the end of a players turn
 function nextPlayer(player) {
 	// handle players with extra turns
+	/* Fix after turn logic is finised
 	if(player.effect == "extraTurn") {
 		// Remove the effect
 		player.effect = "none";
 		// Stay on the current player, they get another turn
 		return;
 	}
+	*/
 
 	// since the current player starts at 0, we want to subtract 1
 	// so the current number reflects actual current player values

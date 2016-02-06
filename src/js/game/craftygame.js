@@ -38,8 +38,9 @@ Game = {
 	},
 
 	start: function() {
-		Game.createMenu();
-		Crafty.init(2216, 2216, document.getElementById('game')).canvas.init();
+		//Skip create Menu Function for now
+		//Game.createMenu();
+		Crafty.init($("#game").width(), $("#game").height(), document.getElementById('game')).canvas.init();
 		// Game pieces for the 4 pokemon you can potentially have
 		// Need to create background colors per user for these to sit on (MAYBE?)
 		/*Crafty.sprite("./gamepieces_alpha.png", {
@@ -71,7 +72,12 @@ Game = {
 };
 
 	  Crafty.load(assetsObj);
-		Crafty.enterScene("menu");
+
+
+		//Skip Menu Scene
+		//Crafty.enterScene("menu");
+		//Hack for 3 players
+		Game.initPlayers(3,[{"name":"test1","starter":"squirtle","space":0,"effect":"none","destinationSpace":0},{"name":"test2","starter":"charmander","space":0,"effect":"none","destinationSpace":0},{"name":"test3","starter":"bulbasaur","space":0,"effect":"none","destinationSpace":0}]);
 	},
 
 	initPlayers: function(numPlayers, players) {
@@ -79,7 +85,13 @@ Game = {
 		Crafty.scene("game", function() {
 			//Crafty.background("url('./wall-old.png')");
 			$("#menu").hide();
-			Crafty.e("2D, Canvas, Image").image("resources/wall-old.png");
+			Crafty.e("2D, Canvas, Image").image("resources/wall-old.png").bind("EnterFrame", function(eventData){
+				if(Crafty.DrawManager.onScreen(playersArray[currentPlayer].mbr())){
+					//console.log(currentPlayer);
+				}else{
+					Crafty.viewport.centerOn(playersArray[currentPlayer],1000);
+				}
+			});
 			currentNumPlayers = numPlayers;
 			for(i = 0;i < numPlayers;i++) {
 				// Create players, move to Pallet Town
@@ -102,39 +114,46 @@ Game = {
 
 	playGame: function() {
 		Crafty.enterScene("game");
-		Crafty.viewport.clampToEntities = false;
-		Crafty.viewport.follow(playersArray[currentPlayer],-800,-800);
+		Crafty.viewport.clampToEntities = true;
+		//Crafty.viewport.bounds = {min:{x:0, y:0}, max:{x:2000, y:2000}};
+		//Crafty.viewport.follow(playersArray[currentPlayer]);
 		//Crafty.viewport.centerOn(playersArray[0], 3000);
 		//  On key press roll the dice
 		// Temporary code, testing stuff.
 		// On site press "R", look at top left of screen
 		Crafty.e("2D, Canvas, Color")
 			  .bind("KeyDown", function(e) {
-			  	if(e.key ==  Crafty.keys.R) {
-			  		player = playersArray[currentPlayer];
-			  		diceNum = rollDice(player);
-			  		moveSpaces(diceNum, player);
-			  		// TODO: move players
-			  		//       do space
-			  		//       move this code
-			  		$("#diceBlock").html(diceNum);
-			  		$("#playerSpace").html(player.name + ": " + player.space);
-
-
-			  		// This will probably be better if we define every space (with x,y coords) on the board since we'll need to
-			  		// display the rules for each square/what each square does
-
-
-			  		//currentY = player.y;
-			  		//currentX = player.x;
-			  		// Need to find determine how to move in a smaller rectangle each time
-			  		//if (y < )
-			  		//newY = currentY - (190*diceNum);
-			  		//player.attr({x:325, y:newY});
-			  		console.log(player);
-			  		// Go to the next player
-			  		nextPlayer(player);
-			  	}
+					if(e.key ==  Crafty.keys.R) {
+			  		Game.rollDice();
+					}
 			  });
+	},
+	rollDice: function() {
+			player = playersArray[currentPlayer];
+			diceNum = rollDice(player);
+			moveSpaces(diceNum, player);
+			// TODO: move players
+			//       do space
+			//       move this code
+			$("#diceBlock").html(diceNum);
+			$("#playerSpace").html(player.name + ": " + player.space);
+
+
+			// This will probably be better if we define every space (with x,y coords) on the board since we'll need to
+			// display the rules for each square/what each square does
+
+
+			//currentY = player.y;
+			//currentX = player.x;
+			// Need to find determine how to move in a smaller rectangle each time
+			//if (y < )
+			//newY = currentY - (190*diceNum);
+			//player.attr({x:325, y:newY});
+			console.log(player);
+			// Go to the next player
+			//Tween Callback will start next player
+	},
+	endTurn: function() {
+		nextPlayer(player);
 	}
 };

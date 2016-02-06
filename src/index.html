@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/menu.css">
 		<link rel="stylesheet" type="text/css" href="css/options.css">
 		<link rel="stylesheet" type="text/css" href="css/game.css">
@@ -12,11 +13,14 @@
 		<script src="js/game/craftygame.js"></script>
 		<script>
 			window.addEventListener('load', Game.start);
+		</script>
+		<!--
 			$(document).ready(function(){
 				$("#menu").hide();
 				$("#options").hide();
 			});
 		</script>
+	-->
 		<title>Pokemon Drinking Game</title>
 	</head>
 	<body>
@@ -27,7 +31,30 @@
 			<!-- PLAYER SPACE DISPLAY -->
 		</div>
 
+		<div id="game" style="width:95%;height75%">
+			<!-- GAME BOARD IS HERE -->
+		</div>
+
+		<button id="rollDiceButton" class="btn-primary btn">Roll</button>
+		<button id="endTurnButton" class="btn-warning btn">End Turn</button>
+
+		<script type="text/javascript">
+			// utilities for the page
+
+			$("#rollDiceButton").click(function(e) {
+				e.preventDefault();
+				Game.rollDice();
+			});
+
+			$("#endTurnButton").click(function(e) {
+				e.preventDefault();
+				Game.endTurn();
+			});
+
+		</script>
+
 		<!-- This menu will eventually need to be the game lobby -->
+		<!-- Temporarily removing this form
 		<div id="menu">
 			<h1>Pokemon Drinking Game!</h1>
 			<h2 id='maxPlayers'></h2>
@@ -45,8 +72,10 @@
 	            <p>Refresh the page to start a new game.</p>
 	        </form>
 		</div>
+		-->
 
 		<!-- OPTIONS NEED TO BE MOVED TO A SEPARATE PAGE EVENTUALLY -->
+		<!-- Temporarily removing ths form
 		<div id="options">
 		<h2>Options</h2>
 			<form id="gameOptions" action="showoptions" >
@@ -57,9 +86,7 @@
 			<button id="optionsClose">Close</button>
 		</div>
 
-		<div id="game">
-			<!-- GAME BOARD IS HERE -->
-		</div>
+
 
 		<script type="text/javascript">
 			// utilities for the page
@@ -111,5 +138,6 @@
 				return false;
 			});
 		</script>
+	-->
 	</body>
 </html>

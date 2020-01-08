@@ -1,7 +1,6 @@
 #Pokemon Drinking Game
 This Pokemon Drinking Game is built using [jQuery](http://jquery.com), javascript and [crafty.js](http://craftyjs.com/).
 
-Update Test
 ##The Board
 
 ![Pokemon Drinking Game Board] (http://bytebucket.org/smleimberg/pokemon-drinking-game/raw/9f73f2b161b5e3b26e04f8c624999debe81c9eba/wall-old.png "Pokemon Drinking Game Board")

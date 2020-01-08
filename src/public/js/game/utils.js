@@ -63,7 +63,7 @@ function moveSpaces(numberOfSpaces, player) {
 	// Update the player space
 	player.space = newSpace;
 	moveTo = spaces[newSpace];
-
+				socket.emit('player_moved', moveTo);
 //leverage tween for movement
 	player.tween({x: moveTo.x, y: moveTo.y}, 1000).bind("TweenEnd",function(eventAction){
 		//Example of TweenEnd Event

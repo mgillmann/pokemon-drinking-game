@@ -38,7 +38,7 @@ Game = {
 	start: function() {
 		//Skip create Menu Function for now
 		//Game.createMenu();
-		Crafty.init($("#game").width(), $("#game").height(), document.getElementById('game')).canvas.init();
+		Crafty.init($("#game").width(), $("#game").height(), document.getElementById('game'));
 		// Game pieces for the 4 pokemon you can potentially have
 		// Need to create background colors per user for these to sit on (MAYBE?)
 		/*Crafty.sprite("./gamepieces_alpha.png", {
@@ -163,13 +163,16 @@ Game = {
 };
 
 socket.on('game_state', function(gameState){
-		Object.keys(gameState.playerMap).forEach(function (key) {
-	 		if(key in playersArray){
+	if(Crafty.canvas.context === null){
+		Game.start();
+	}
+	Object.keys(gameState.playerMap).forEach(function (key) {
+		if(key in playersArray){
 
-			}else{
-					Game.initPlayer(currentNumPlayers+1,gameState.playerMap[key]);
-			}
-		});
+		}else{
+				Game.initPlayer(currentNumPlayers+1,gameState.playerMap[key]);
+		}
+	});
  });
 
  socket.on('player_moved', function(movedPlayer){
